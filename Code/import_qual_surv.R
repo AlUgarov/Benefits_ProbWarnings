@@ -21,9 +21,11 @@ unloadNamespace("memisc")
 #Put your own data folder here:
 require("haven")
 
+#Put your own data folder here:
+setwd("C:/Tornado_warnings/Benefits_ProbWarnings")
 
 #Reading csv data with raw results:
-qsur<-read.csv(file = '../Input/Tornado_Warnings_Qualtrics.csv')
+qsur<-read.csv(file = './Input/Tornado_Warnings_Qualtrics.csv')
 
 
 
@@ -64,12 +66,12 @@ print(table(qsur$age_group))
 
 #Attaching state fips to merge by state
 names(qsur)[names(qsur) == "State"] <- "state_q"
-states_crosswalk<-read.csv(file = '../Input/state_codes.csv')
+states_crosswalk<-read.csv(file = './Input/state_codes.csv')
 qsur<-merge(qsur,states_crosswalk,by=c("state_q"),all.x = TRUE)
 
 
 #Attaching weights
-df_weights<-read.csv(file = '../Input/sample_weights1.csv') #weights by gender and group, if gender+group+age+state - use sample_weights.csv
+df_weights<-read.csv(file = './Input/sample_weights1.csv') #weights by gender and group, if gender+group+age+state - use sample_weights.csv
 head(df_weights)
 qsur<-merge(qsur,df_weights,by=c("gender","group"),all.x = TRUE)
 #qsur<-merge(qsur,df_weights,by=c("gender","group","age_group","statefips"),all.x = TRUE)
@@ -307,5 +309,5 @@ qsur$sw8<-factor(qsur$sw8,levels = c(1,2,3,4,5,6,0),labels = labels_threat,order
 qsur$swD2<-factor(qsur$swD2,levels = c(1,2,3,4,5,6,0),labels = labels_threat,ordered=TRUE)
 qsur$swD4<-factor(qsur$swD4,levels = c(1,2,3,4,5,6,0),labels = labels_threat,ordered=TRUE)
 
-saveRDS(qsur,file="../Input/qsur_clean.Rdata")
+saveRDS(qsur,file="./Input/qsur_clean.Rdata")
 

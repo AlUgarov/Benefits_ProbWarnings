@@ -12,7 +12,10 @@ library(data.table)
 library(srvyr)
 
 
-qsur<-readRDS(file="../Input/qsur_clean.Rdata")
+#Put your own data folder here:
+setwd("C:/Tornado_warnings/Benefits_ProbWarnings")
+
+qsur<-readRDS(file="./Input/qsur_clean.Rdata")
 
 qsur<-droplevels(qsur)
 
@@ -84,7 +87,7 @@ contr_plot<-prot_means%>%
   scale_x_discrete(limits = rev(labels_C1))
 
 print(contr_plot)
-ggsave("../Graphs/contr_plot_allQ.pdf",width = 10, height = 6)
+ggsave("./Graphs/contr_plot_allQ.pdf",width = 10, height = 6)
 
 
 
@@ -144,8 +147,8 @@ threatresp_plot<-threat_resp %>%
 threatresp_plot_all<-threatresp_plot + facet_wrap(vars(time))+ theme(legend.position="bottom",legend.title=element_blank())
 print(threatresp_plot_all)
 
-ggsave("../Graphs/threat_resp_allQ.pdf", width=10, height=6)
-ggsave("../Graphs/threat_resp_allQ.png", device=png(), width=10, height=6, dpi=600)
+ggsave("./Graphs/threat_resp_allQ.pdf", width=10, height=6)
+ggsave("./Graphs/threat_resp_allQ.png", device=png(), width=10, height=6, dpi=600)
 
 
 

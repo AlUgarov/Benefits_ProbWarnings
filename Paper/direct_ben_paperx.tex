@@ -37,7 +37,7 @@
 %% Enter affiliations within the \affiliation{} field. Use \aff{#} to indicate the affiliation letter at both the
 %% affiliation and at each author's name. Use \\ to insert line breaks to place each affiliation on its own line.
 
-\authors{Alexander Ugarov\thanks{Current Affiliation: HiveReview. The author appreciates support and comments from other University of Oklahoma CIMMS researchers, but most of all Kimberley Klockow and Harold Brooks.},\aff{a}\correspondingauthor{Alexander Ugarov, alugarov@gmail.com} 
+\authors{Alexander Ugarov\thanks{Current Affiliation: HiveReview. The author appreciates support and comments from CIMMS researchers, but most of all Kimberley Klockow and Harold Brooks.},\aff{a}\correspondingauthor{Alexander Ugarov, alugarov@gmail.com} 
 }
 
 \affiliation{\aff{a}{University of Oklahoma, CIMMS}}
@@ -116,7 +116,9 @@ Our study supports the conclusion that the US population can interpret and use p
 \vspace{10pt}
 \subsection{Data Collection} 
 We collect the data from two samples. The mail survey recruited respondents across the whole US but with the emphasis on tornado-prone regions (see Table \ref{tor_prone} in the Appendix). Respondents could choose to respond by mail by using an enclosed envelope or to fill the survey online. The Internet-survey recruited subjects from the tornado-prone regions only. The use of different sampling methods intended to get a wider representation of different demographic groups. Mail survey reached more older respondents living in rural communities, while the Internet-survey helped to get answers from younger respondents. We received 718 responses from the mail survey and 403 responses from the Internet survey. Questionnaires were practically identical  except for small changes needed to screen respondents in the Internet survey. 
-\input{../Tables/taab_mail_p.tex}
+
+\input{../Tables/taab3_p.tex}\label{sample_tab}
+
 The mail survey uses stratified probabilistic sampling to get a more representative sample which allows us to use statistical tests. Our initial frame comes from the USPS delivery route database. We stratify the sampling frame by state of residence and by housing type and sample 10600 addresses with more addresses from tornado-prone states. We consider the state to be tornado-prone if it belongs to 20 states with the highest average incidence of significant tornadoes (EF2 and above) per square mile within the last 20 years.  The selected states include 45\% of the US population, but 88\% of tornado fatalities. This paper uses only the sample obtained from the tornado-prone states.
 
 The questionnaire was pretested, first, by using qualitative personal  interviews conducted either in person or over Google Meets and Skype. These interviews helped us to clarify the question's wording and make sure that their interpretation by subjects matches our expectations. On the second stage, we conducted quantitative pilots both for the Internet-sample and for the mail survey.
@@ -125,7 +127,7 @@ We pretest our surveys by using, first, qualitative face-to-face\footnote{Due to
 
 \vspace{10pt}
 \subsection{Representativeness and Selection Bias} 
-Despite our effort to use different recruiting efforts, both samples had disproportionally more females and more people with college education and above (see Table \ref{descr_mail} above and Table \ref{descr_q} for the Internet-sample in the Appendix A). Additionally, the mail survey recruited more older white respondents. Hence in order to translate our findings to the US population we re-weight our results to match the US population structure by age and gender.\footnote{We use the datafrom the American Community Survey 2018, downloaded from IPUMS (\citet{ruggles_ipums_2021}).}
+Despite our effort to use different recruiting efforts, both samples had disproportionally more females and more people with college education and above (Table \ref{sample_tab}). Additionally, the mail survey recruited more older white respondents. Hence in order to translate our findings to the US population we re-weight our results to match the US population structure by age and gender.\footnote{We use the datafrom the American Community Survey 2018, downloaded from IPUMS (\citet{ruggles_ipums_2021}).}
 
 
 
@@ -133,23 +135,22 @@ Despite our effort to use different recruiting efforts, both samples had disprop
 \section{Use of Standard and Extended Tornado Alerts}
 
 First, we study how extended tornado warnings would affect protective responses. We ask our respondents to imagine being at home with their family at 7 PM when a tornado warning is issued. Next, we elicit their protective responses conditional on lead times and on probabilities of a tornado to happen within a given time interval. The Internet-survey asks the same set of questions for the nightime warnings (2 AM).\footnote{Mail survey conducted after the Internet-survey had to drop these questions in effort to shorten the questionnaire.} While these questions cannot describe the multitude of scenarios for different times and for different circumstances (such as staying outside or being separated from the family), we still believe that they cover the most common scenario. 
-\begin{figure}[!htbp]
+\begin{figure}[!htbp] 
 \centering
-\includegraphics[width=33pc]{../Graphs/comp_responses_w.pdf} 
-\caption{Protective Response by Lead Time}\label{comp_responses}
+\includegraphics[width=33pc]{../Graphs/contr_plot_allQ.pdf}
+\caption{Protective Response by Lead Time (Internet-sample)}\label{contr_plot}
 \end{figure}
-Most respondents choose to respond to a standard tornado warning by taking a shelter at home or near.  The proportion of respondents choosing this action (55\%) is surprisingly stable across samples and across times in the same sample (Figure \ref{comp_responses}). Roughly one-third of responds expects to seek more information without taking shelter. About 10\% of respondents in the Internet sample choose to drive to another house or structure or to drive out of the potential tornado path. This proportion is slightly higher for the Internet sample (Figure \ref{cont_plot}).
+Most respondents choose to respond to a standard tornado warning by taking a shelter at home or near.  The proportion of respondents choosing this action (55\%) is surprisingly stable across samples and across times in the same sample (Figure \ref{contr_plot}). Roughly one-third of responds expects to seek more information without taking shelter. About 10\% of respondents in the Internet sample choose to drive to another house or structure or to drive out of the potential tornado path. This proportion is even lower for the mail sample (Figure \ref{comp_responses}).
 
 Increasing lead time to 40 minutes on its own have practically no effect on the total proportion of people taking any protective action, as more than 90\% of individuals do it anyway. However, increasing lead time decreases the likelihood of sheltering at home in favor of seeking more information and evacuating. It is clear that extended lead time improves safety of people in vulnerable housing conditions, such as mobile houses. But the safety of people living in more robust homes depends on their ability to interpret additional information they receive while not sheltering and properly responding to it.
 
 Providing probabilistic information is the most crucial aspect of prospective tornado alerts system, but their usefulness relies on the users' ability to understand and react to probabilistic forecasts. The survey indicates that most individuals respond rationally to probabilistic warnings. The proportion of respondents choosing to protect increases with the forecasted probability. Almost 100\% of respondents expect to take some protective action if they learn that a tornado would happen with probability 100\% in the next 40 minutes in a 10 mile radius from their location. Less than 5\% of respondents make non-monotonic choices meaning that 95\% of respondents protect for all the probabilities which are higher than their threshold probability.
 \begin{figure}[!htbp]
 \centering
-\includegraphics[width=27pc]{../Graphs/threat_resp_mail_w.pdf} 
-\caption{Protective Response by Probability of a Tornado}\label{threat_resp_mail}
+\includegraphics[width=33pc]{../Graphs/threat_resp_allQ.pdf} 
+\caption{Protective Response by Probability of a Tornado (Internet sample)}\label{threat_respQ}
 \end{figure}
-
-Most individuals expect to take protective actions when the probability gets to 20\%. The range between 0 and 20\% probability is also the range of highest sensitivity to risk in which the largest share of respondents switches from no protection to protection as can be seen from the slope of the line in Figure \ref{threat_resp_mail}.  Interestingly, this is the probability most consistent with implied probabilities of existing deterministic tornado warnings, which also prompt the majority of users to protect. The reaction threshold is higher for nighttime warnings (see Figure \ref{threat_respQ} in   Appendix B). This is consistent with higher costs of nighttime protective actions for most respondents as they potentially require interrupting sleep and driving with poor visibility.
+Our analysis presented in Figure \ref{threat_respQ} shows that most individuals expect to first take protective actions when the probability gets to 40\%.\footnote{This is easy to see through the slope of the curves in Figure \ref{threat_respQ}.} Interestingly, this is the probability most consistent with implied probabilities of existing deterministic tornado warnings, which also prompt the majority of users to protect. The reaction threshold is higher for nighttime warnings. This is consistent with higher costs of nighttime protective actions for most respondents as they potentially require interrupting sleep and driving with poor visibility.
 
 
 
@@ -295,7 +296,7 @@ High calculated benefits of probabilistic warnings points to the need for furthe
 % ACKNOWLEDGMENTS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \acknowledgments
-This work was supported by NOAA/Office of Oceanic and Atmospheric Research under NOAA–Universityof Oklahoma Cooperative Agreement NA16OAR4320115, U.S.
+This work was supported NOAA/Office of Oceanic and Atmospheric Research under NOAA–Universityof Oklahoma Cooperative Agreement NA16OAR4320115, U.S.
 Department of Commerce.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DATA AVAILABILITY STATEMENT
@@ -303,7 +304,7 @@ Department of Commerce.
 % 
 %
 \datastatement
-The anonymized survey data is and the code used to process it is available at \url{https://github.com/AlUgarov/Benefits_ProbWarnings}.
+The anonymized survey data is and the code used to process it is available at 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -336,26 +337,22 @@ The anonymized survey data is and the code used to process it is available at \u
 
 \appendixtitle{Additional Tables}
 \input{Table_incidence.tex}\label{torn_prone}
-\input{../Tables/taab3_p.tex}\label{sample_tab}
 
-\clearpage
 \newpage
 \appendix[B] 
-\appendixtitle{Additional Graphs (Internet Sample)}
-
-\begin{figure}[!htbp] 
-\centering
-\includegraphics[width=33pc]{../Graphs/contr_plot_allQ.pdf}
-\caption{Protective Response by Lead Time (Internet-sample)}\label{contr_plot}
-\end{figure}
+\appendixtitle{Additional Graphs (Mail Sample)}
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[width=33pc]{../Graphs/threat_resp_allQ.pdf} 
-\caption{Protective Response by Probability of a Tornado (Internet sample)}\label{threat_respQ}
+\includegraphics[scale=0.55]{../Graphs/comp_responses_w.pdf} 
+\caption{Protective Response by Lead Time (Mail Sample)}\label{comp_responses}
 \end{figure}
 
-\clearpage
+\begin{figure}[!htbp]
+\includegraphics[scale=0.55]{../Graphs/threat_resp_mail_w.pdf} 
+\caption{Protective Response by Probability of a Tornado (Mail samples)}\label{threat_resp_mail}
+\end{figure}
+
 \newpage
 \bibliographystyle{ametsocV6}
 \bibliography{references}

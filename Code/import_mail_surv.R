@@ -17,16 +17,18 @@ library(sjlabelled)
 
 require("haven")
 
+#Put your own data folder here:
+setwd("C:/Tornado_warnings/Benefits_ProbWarnings")
 
 #IMPORT THE MAIN DATA:#
-qsur<-readRDS(file="../Input/Ext_Alerts.Rdata")
+qsur<-readRDS(file="./Input/Ext_Alerts.Rdata")
 dropped_vars=c('StardDate','DistributionChannel','EndDate','RecordedData', 'LS', 'EmbeddedData', 'term')
 qsur<-qsur[, !(colnames(qsur) %in% dropped_vars)]
 
-write.csv(qsur,"../Input/Data_Mail.csv", row.names = FALSE)
+write.csv(qsur,"./Input/Data_Mail.csv", row.names = FALSE)
 
 #Reading csv data with raw results:
-qsur<-read.csv(file = '../Input/Data_Mail.csv')
+qsur<-read.csv(file = './Input/Data_Mail.csv')
 
 #Keep only complete responses##
 print(table(qsur$Finished))
@@ -63,7 +65,7 @@ qsur$hhsize[qsur$F3==100]=NA
 table(qsur$hhsize)
 
 #Importing the pilot
-pilot<-readRDS(file="../Temp/Ext_Alerts_Pilot.Rdata")
+pilot<-readRDS(file="./Temp/Ext_Alerts_Pilot.Rdata")
 dim(qsur)
 table(qsur$gender)
 qsur<- bind_rows(qsur,pilot)
@@ -72,11 +74,11 @@ dim(qsur)
 table(qsur$gender)
 
 #Importing and merging sample characteristics (stratas)
-sample_meta<-read.csv(file = '../Input/sample_frame_characteristics.csv') 
+sample_meta<-read.csv(file = './Input/sample_frame_characteristics.csv') 
 head(sample_meta)
 names(sample_meta)[names(sample_meta) == "stratas"] <- "strata" #selection probabilities by strata
 
-sel_probs<-read.csv(file = '../Input/selprobs.csv')
+sel_probs<-read.csv(file = './Input/selprobs.csv')
 head(sel_probs)
 
 sample_meta<-merge(sample_meta, sel_probs, by="strata",all.x = TRUE)
@@ -90,7 +92,7 @@ table(sample_meta$strata[sample_meta$pilot==1])
 
 
 #Attaching state fips to merge by state
-states_crosswalk<-read.csv(file = '../Input/state_codes.csv')
+states_crosswalk<-read.csv(file = './Input/state_codes.csv')
 qsur<-merge(qsur,states_crosswalk,by=c("statefips"),all.x = TRUE)
 print(table(qsur$state_name))
 
@@ -122,8 +124,8 @@ qsur$tornadoprone<-recode(qsur$groupn, '0'=0,'1'=0,'2'=1,'3'=1)
 qsur$tornadopronef<-factor(qsur$tornadoprone, levels=c(1,0), labels=c("Tornado-prone","Not tornado-prone"), ordered=TRUE)
 
 #Loading prepared ACS sample proportions:
-load(file = "../Input/ACS_props_all.RData")
-load(file = "../Input/ACS_props_sep.RData")
+load(file = "./Input/ACS_props_all.RData")
+load(file = "./Input/ACS_props_sep.RData")
 
 
 
@@ -284,6 +286,6 @@ qsur$AccessCode<-qsur$ExternalDataReference
 
 qsur %>% filter(!is.na(ExternalDataReference)) ->qsur
 
-saveRDS(qsur,file="../Temp/Ext_Alerts_Merged.Rdata")
+saveRDS(qsur,file="./Temp/Ext_Alerts_Merged.Rdata")
 
 

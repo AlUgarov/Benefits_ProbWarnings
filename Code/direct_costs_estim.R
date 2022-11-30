@@ -10,11 +10,13 @@ tempdir()
 dir.create(tempdir())
 
 
+#Put your own data folder here:
+setwd("C:/Tornado_warnings/Benefits_ProbWarnings")
 
 ##-- ASSUMPTIONS --
 
 #Calculate population density in the area
-states_dat<-read.csv(file = '../Input/sel_states.csv')
+states_dat<-read.csv(file = './Input/sel_states.csv')
 density=sum(states_dat$Population)/sum(states_dat$Area)
 print(density)
 
@@ -120,9 +122,9 @@ mitigation_factors=data.frame(housing=c("Permanent","Mobile"), mit_factor=c(m_P,
 #Importing protective responses (table with % sheltering/evacuating for standard and extended warnings)
 #note: only evacuation counts as a protective response for mobile housing
 
-read.csv(file = '../Output/det_props_mail.csv')%>% filter(warn_type=="standard") %>%
+read.csv(file = './Output/det_props_mail.csv')%>% filter(warn_type=="standard") %>%
   select(housing, time, prop, shelter) %>% rename(protect=prop)-> prot_response
-read.csv(file = '../Output/prob_props_mail.csv') %>% mutate(time=recode(time, "7 PM"="day", "2 AM"="night")) -> prot_response_prob
+read.csv(file = './Output/prob_props_mail.csv') %>% mutate(time=recode(time, "7 PM"="day", "2 AM"="night")) -> prot_response_prob
 
 
 #Merging to calculate the mitigation factors:
@@ -212,14 +214,14 @@ aggr_prob_forecast %>% mutate(mon_risk=prob_shift*(1-mit_factor)*(VSL*fat_rate+0
 aggr_prob_forecast %>% mutate(adj_prot_share=100*adj_prot_share) %>% select(housing, adj_prot_share, value_time, value_time2)->het_costs_table
 
 het_costs_table
-print(xtable(het_costs_table, type = "latex"), file = "Output/opp_costs.tex")
+print(xtable(het_costs_table, type = "latex"), file = "./Output/opp_costs.tex")
 
 aggr_prob_forecast %>% mutate(adj_prot_share=100*adj_prot_share) %>% select(housing, prot_share, adj_prot_share, value_time2)->het_costs_table2
 
 het_costs_table2
-print(xtable(het_costs_table2, type = "latex"), file = "Output/opp_costs2.tex")
+print(xtable(het_costs_table2, type = "latex"), file = "./Output/opp_costs2.tex")
 
-het_costs_table %>% write.csv('../Output/het_costs_table.csv')
+het_costs_table %>% write.csv('./Output/het_costs_table.csv')
 
 # Assuming that forecasts of different probs (except 0) have the same average annual area:
 #-> averaging out sheltering times
@@ -298,12 +300,12 @@ print(warnings_estim_het2)
 warnings_estim <- cbind(warnings_estim,prob_estim[,3])
 names(warnings_estim) <- c("V","No_warning","Deterministic","Probabilistic")
 print(warnings_estim)
-warnings_estim %>% write.csv('../Output/table_warnings_estim.csv')
+warnings_estim %>% write.csv('./Output/table_warnings_estim.csv')
 
 warnings_estim_het<-cbind(warnings_estim_het, het_prob_estim[3:8,])
 names(warnings_estim_het) <- c("V","No_warning","Deterministic","Probabilistic")
 print(warnings_estim_het)
-warnings_estim_het %>% write.csv('../Output/table_warnings_estim_het.csv')
+warnings_estim_het %>% write.csv('./Output/table_warnings_estim_het.csv')
 
 
 
@@ -311,7 +313,7 @@ warnings_estim_het2<-cbind(warnings_estim_het2, het_prob_estim[3:8,1])
 warnings_estim_het2[5:6,4]<-het_prob_estim[9:10,1]
 names(warnings_estim_het2) <- c("V","No_warning","Deterministic","Probabilistic")
 print(warnings_estim_het2)
-warnings_estim_het2 %>% write.csv('../Output/table_warnings_estim_het2.csv')
+warnings_estim_het2 %>% write.csv('./Output/table_warnings_estim_het2.csv')
 
 
 

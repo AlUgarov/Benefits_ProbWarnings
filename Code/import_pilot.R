@@ -10,8 +10,10 @@ library(sjlabelled)
 #Put your own data folder here:
 require("haven")
 
+#Put your own data folder here:
+setwd("C:/Tornado_warnings/Benefits_ProbWarnings")
 
-qsur <- read.csv(file = '../Input/Pilot_Data.csv')
+qsur <- read.csv(file = './Input/Pilot_Data.csv')
 head(qsur)
 
 qsur$StartDate<-as.Date(qsur$StartDate, format = "%m/%d/%y")
@@ -60,4 +62,4 @@ keepnames<-c(basevars, A1q,C1_l,C2_l,"E1","E2", "E3_1",demvars)
 
 qsur_pilot<-qsur[,keepnames]
 head(qsur_pilot)
-saveRDS(qsur_pilot,file="../Temp/Ext_Alerts_Pilot.Rdata")
+saveRDS(qsur_pilot,file="./Temp/Ext_Alerts_Pilot.Rdata")

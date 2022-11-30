@@ -10,15 +10,17 @@ library(survey)
 library(srvyr)
 library(RColorBrewer)
 library(magrittr)
-library(stargazer)
 
+
+#Put your own data folder here:
+setwd("C:/Tornado_warnings/Benefits_ProbWarnings")
 
 #Import pre-processed mail survey data:
-qsur<-readRDS(file="../Temp/Ext_Alerts_Merged.Rdata")
+qsur<-readRDS(file="./Temp/Ext_Alerts_Merged.Rdata")
 
 #Loading prepared ACS sample descr stats:
-load(file = "../Input/ACS_descrstat_all.Rdata")
-load(file = "../Input/ACS_descrstat_sep.Rdata")
+load(file = "./Input/ACS_descrstat_all.Rdata")
+load(file = "./Input/ACS_descrstat_sep.Rdata")
 
 
 #-----DESCRIPTIVE STATS---------------------
@@ -33,12 +35,12 @@ descr_stat<-cbind(descr_statn[-1,],100*descr_statp[-1,2],descr_stat0[,1])
 colnames(descr_stat)<-c("Group","Sample (N)","Sample (%)","Population (%)")
 print(descr_stat)
 
-write.csv(descr_stat, file = "../Tables/descr_stat_all.csv")
+write.csv(descr_stat, file = "./Tables/descr_stat_all.csv")
 
-print(xtable(descr_stat, type = "latex",digits=c(0)), file = "Tables/descr_stat_all.tex")
+print(xtable(descr_stat, type = "latex",digits=c(0)), file = "./Tables/descr_stat_all.tex")
 
 #Adding Qualtrics data: (should I do it?)
-load(file = "../Input/Qualt_descrstat_all.Rdata")
+load(file = "./Input/Qualt_descrstat_all.Rdata")
 descr_stat<-cbind(descr_stat[,-4],descr_statQ[,c(2,3)],descr_stat[,-c(1,2,3)])
 colnames(descr_stat)<-c("Group","Sample (N)","Sample (%)","Sample (N)","Sample (%)","Population (%)")
 print(descr_stat)
@@ -59,9 +61,9 @@ descr_stat<-cbind(descr_statn[-1,0], descr_statn[-1,1],100*descr_statp[-1,1],des
 colnames(descr_stat)<-c("Sample (N)","Sample (%)","Population (%)","Sample (N)","Sample (%)","Population (%)")
 print(descr_stat)
 
-write.csv(descr_stat, file = "../Tables/descr_stat_sep.csv")
+write.csv(descr_stat, file = "./Tables/descr_stat_sep.csv")
 
-print(xtable(descr_stat, type = "latex",digits=c(0)), file = "../Tables/descr_stat_sep.tex")
+print(xtable(descr_stat, type = "latex",digits=c(0)), file = "./Tables/descr_stat_sep.tex")
 
 
 
@@ -138,7 +140,7 @@ contr_plot<-prot_means%>%
 
 contr_plots<-contr_plot+ facet_wrap(vars(time))+theme(legend.position="bottom")
 print(contr_plots)
-ggsave("../Graphs/comp_responses_w.pdf",width = 10, height = 6)
+ggsave("./Graphs/comp_responses_w.pdf",width = 10, height = 6)
 
 
 
@@ -166,7 +168,7 @@ qsur %>% select(AccessCode, housing, pweight, C1, C2, D1, D2) %>%
   group_by(time, warn_type, housing) %>%
   summarise(prop=survey_mean(protect, vartype=c("se"), na.rm=TRUE), shelter=survey_mean(shelter, vartype=c("se"), na.rm=TRUE)) %>%
   arrange(housing, time, warn_type) %>%
-  as.data.frame() %>% write.csv('../Output/det_props_mail.csv')
+  as.data.frame() %>% write.csv('./Output/det_props_mail.csv')
 
 
 
@@ -206,7 +208,7 @@ qsur %>% filter(secsw5==0) %>% select(housing, pweight, threschold) %>%
   as.data.frame() -> prob_props
 
 
-write.csv(prob_props, '../Output/prob_props_mail.csv')
+write.csv(prob_props, './Output/prob_props_mail.csv')
 
 #proportions switching for each group:
 qsur %>% filter(secsw5==0) %>% select(AccessCode, pweight, housing, C5_l) %>%
@@ -233,4 +235,4 @@ threatresp_plot<-threat_resp %>%
   labs(x="Risk level (%)", y="", title = "Proportion of respondents choosing to protect (6 PM)")
 
 print(threatresp_plot)
-ggsave("../Graphs/threat_resp_mail_w.pdf",width = 10, height = 6)
+ggsave("./Graphs/threat_resp_mail_w.pdf",width = 10, height = 6)
