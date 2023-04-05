@@ -80,7 +80,7 @@ contr_plot<-prot_means%>%
   #scale_fill_brewer(palette="Set1", guide= guide_legend(reverse = TRUE, title="Lead time:"))+
   scale_fill_manual(values = c("red","navy"),guide= guide_legend(reverse = TRUE, title="Lead time:"))+
   coord_flip()+
-  labs(x="Response", y="% mentioned", title = "What would you do? \n(tornado warning at home at 7 PM)", caption = "Internet-sample, weighted")+
+  labs(x="Response", y="% mentioned", title = "What would you do? \n(deterministic tornado warning at home at 7 PM)", caption = "Internet-sample, weighted.\n Note: >*(<*) - extended warnings have a higher (lower) response at 95% significance rate,\n >*(<*) - a higher (lower) response at 99% significance rate.")+
   geom_text(aes(label = lab), position=position_dodge(width=0.9), hjust = -.2)+
   scale_y_continuous(limits=c(0,1),labels = scales::percent) +
   theme(text = element_text(size=15))+
@@ -142,7 +142,7 @@ threatresp_plot<-threat_resp %>%
   scale_x_continuous(limits = c(0,1),expand=c(0,0.1),labels = scales::percent)+
   scale_y_continuous(limits=c(0,1),labels = scales::percent)+
   theme(text = element_text(size=15))+
-  labs(x="Risk level (%)", y="", title = "Proportion of respondents choosing to protect \n(Internet-sample)")
+  labs(x="Risk level (%)", y="", title = "Proportion of respondents choosing to protect in response \nto a probabilistic tornado threat (Internet-sample)", caption = "Note: Internet sample (weighted). Grey areas show 95% confidence intervals.")
 
 threatresp_plot_all<-threatresp_plot + facet_wrap(vars(time))+ theme(legend.position="bottom",legend.title=element_blank())
 print(threatresp_plot_all)

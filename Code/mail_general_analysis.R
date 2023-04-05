@@ -131,7 +131,7 @@ contr_plot<-prot_means%>%
   #scale_fill_brewer(palette="Set1", guide= guide_legend(reverse = TRUE, title="Lead time:"))+
   scale_fill_manual(values = c("red","navy"),guide= guide_legend(reverse = TRUE, title="Lead time:"))+
   coord_flip()+
-  labs(x="Response", y="% mentioned", title = "What would you do? (tornado warning at home)")+
+  labs(x="Response", y="% mentioned", title = "What would you do? \n(deterministic tornado warning at home)",  caption = "Note: The graph shows the distribution of population protective responses based on the weighted mail sample.\n Symbols >*(<*) indicate that extended warnings have a higher (lower) response at 95% significance rate,\n >*(<*) - a higher (lower) response at 99% significance rate.")+
   geom_text(aes(label = lab), position=position_dodge(width=0.9), hjust = -.2)+
   scale_y_continuous(limits=c(0,1),labels = scales::percent) +
   theme(text = element_text(size=15))+
@@ -217,7 +217,7 @@ qsur %>% filter(secsw5==0) %>% select(AccessCode, pweight, housing, C5_l) %>%
   mutate(shelter=case_when((housing=="Permanent"&response %in% c(2,3,4)) ~ 1, (housing=="Mobile"&response %in% c(3,4)) ~ 1, TRUE ~0)) %>%
   as_survey_design(ids=AccessCode, weights=pweight) %>%
   group_by(prob) %>%
-  summarise(nobs=n(), prot_share=survey_mean(shelter, proportion = TRUE, vartype=c("ci"), na.rm=TRUE)) %>%
+  summarise(nobs=n(), prot_share=survey_mean(shelter, proportion = TRUE, vartype=c("ci"), level=0.95, na.rm=TRUE)) %>%
   mutate(prob=factor(prob,levels=C5_l, labels=threat_levels, ordered=TRUE)) %>%
   arrange(prob) %>%
   as.data.frame() ->threat_resp
@@ -232,7 +232,7 @@ threatresp_plot<-threat_resp %>%
   scale_x_discrete(limits = threat_levels,expand=c(0,0.1))+
   scale_y_continuous(limits=c(0,1),labels = scales::percent)+
   theme(text = element_text(size=15))+
-  labs(x="Risk level (%)", y="", title = "Proportion of respondents choosing to protect (6 PM)")
+  labs(x="Risk level (%)", y="", title = "Proportion of respondents choosing to protect in response \nto a probabilistic tornado threat (7 PM)", caption = "Note: Mail sample (weighted). The grey area shows 95% confidence interval for the population proportion.")
 
 print(threatresp_plot)
 ggsave("./Graphs/threat_resp_mail_w.pdf",width = 10, height = 6)

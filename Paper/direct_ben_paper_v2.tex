@@ -1,0 +1,385 @@
+%% Version 6.1, 1 September 2021
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% amspaperV6.tex --  LaTeX-based instructional template paper for submissions to the 
+% American Meteorological Society
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PREAMBLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Start with one of the following:
+% 1.5-SPACED VERSION FOR SUBMISSION TO THE AMS
+\documentclass{ametsocV6.1}
+\usepackage{makecell}
+\usepackage{subcaption}
+\usepackage{multirow}
+
+% TWO-COLUMN JOURNAL PAGE LAYOUT---FOR AUTHOR USE ONLY
+% \documentclass[twocol]{ametsocV6.1}
+
+
+%\newcommand{\add}[1]{{\color{red}#1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% To be entered by author:
+
+%% May use \\ to break lines in title:
+
+\title{Lives Saved vs Time Lost: Direct Societal Benefits of Probabilistic Tornado Warnings}
+
+%% Enter authors' names and affiliations as you see in the examples below.
+%
+%% Use \correspondingauthor{} and \thanks{} (\thanks command to be used for affiliations footnotes, 
+%% such as current affiliation, additional affiliation, deceased, co-first authors, etc.)
+%% immediately following the appropriate author.
+%
+%% Note that the \correspondingauthor{} command is NECESSARY.
+%% The \thanks{} commands are OPTIONAL.
+%
+%% Enter affiliations within the \affiliation{} field. Use \aff{#} to indicate the affiliation letter at both the
+%% affiliation and at each author's name. Use \\ to insert line breaks to place each affiliation on its own line.
+
+\authors{Alexander Ugarov\thanks{Current Affiliation: HiveReview. The author appreciates support and comments from other University of Oklahoma CIMMS researchers, but most of all Kimberley Klockow and Harold Brooks.},\aff{a}\correspondingauthor{Alexander Ugarov, alugarov@gmail.com} 
+}
+
+\affiliation{\aff{a}{University of Oklahoma, CIMMS}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ABSTRACT
+%
+% Enter your abstract here
+% Abstracts should not exceed 250 words in length!
+%
+
+\abstract{National Weather Service is planning to implement the system of probabilistic tornado warnings. In this paper, we estimate and compare full societal costs of tornadoes with existing deterministic and potential probabilistic warnings. These full costs include the value of statistical lives lost as well as the value of the time spent sheltering. We find that probabilistic tornado warnings would decrease total expected fatalities. The improvement in decision-making would also decrease the total opportunity cost of time spent sheltering even though the total sheltering time is likely to increase. In total, probabilistic warnings should lower societal costs of tornadoes relative to deterministic warnings by approximately \$76-140 million per year with a large portion of this improvement coming from lower casualties.} 
+
+\begin{document}
+
+
+%% Necessary!
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SIGNIFICANCE STATEMENT/CAPSULE SUMMARY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% If you are including an optional significance statement for a journal article or a required capsule summary for BAMS 
+% (see www.ametsoc.org/ams/index.cfm/publications/authors/journal-and-bams-authors/formatting-and-manuscript-components for details), 
+% please apply the necessary command as shown below:
+%
+% Significance Statement (all journals except BAMS)
+%
+\statement
+	We measure societal benefits of probabilistic and deterministic tornado warnings in the US by evaluating their effects on expected casualties and sheltering costs. We find that probabilistic warnings deliver almost twice as much net societal benefits as deterministic ones. These gains happen due to less casualties and due to making protective behavior more responsive to risks and sheltering costs.  This paper provides additional evidence of the need to implement probabilistic extreme weather warnings.
+%
+%% Capsule (BAMS only)
+%%
+%\capsule
+%       Enter BAMS capsule here, no more than 30 words. See \url{www.ametsoc.org/index.cfm/ams/publications/author-information/formatting-and-manuscript-components/#capsule} for details.
+% 
+%% * * If using twocol mode, you will need to use the commands "twocolsig" and "twocolcapsule" in place of "sig" and "capsule"
+%%      to ensure that the text box correctly spans across both columns.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MAIN BODY OF PAPER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\section{Introduction}
+
+Most people are aware of grim costs of tornados killing dozens of people per year\footnote{National Weather Service, https://www.weather.gov/media/pah/Skywarn/TORNADOsafety.pdf}, but less know about warnings killing hundreds thousands of hours of sheltering time.  Sheltering is costly because it forces people to reduce time spent on work and leisure. These losses can be plausibly measured in monetary terms: \citet{simmons_economic_2013} estimate that tornados impose roughly \$3 to \$4 billion of annual implicit costs\footnote{By implicit costs we mean those costs that are not paid directly. For example, a plumber stuck in a traffic jam bears implicit costs because they could have earned more if they had worked instead.} on the US society, and the opportunity costs of sheltering is one of its largest cost components amounting to \$1.3-2.6 billion.
+
+One proposed way to reduce the societal costs of tornados is to provide information on the probability of a tornado to happen in a location instead of providing deterministic yes/no prediction \citep{rothfusz_facets_2018}. In theory, probabilistic extreme weather warnings give more detailed information to users and enable them to make better decisions \citep{murphy_what_1993, papastavrou_improving_1996}.  Potential users in the US also demonstrate preference for receiving probabilistic versus deterministic weather forecasts \citep*{morss_communicating_2008, morss_examining_2010}. At the same time, probabilistic warnings might reduce the decisions quality for some users, and hence it is not clear apriori whether their potential societal benefits outweigh the additional cost of development and delivery of more sophisticated forecasts.
+
+The main question of this study is to evaluate whether providing probabilistic tornado warnings instead of deterministic ones would benefit US households. It involves measuring the total societal costs of tornadoes both with deterministic and probabilistic warnings. If probabilistic warnings indeed significantly reduce societal costs of tornados, then their development and implementation should be supported by the government. The second question of this study is to explore the responses to probabilistic warnings, which can help to improve the design of both deterministic and probabilistic warnings.
+
+This paper uses population surveys to calculate societal benefits of deterministic and probabilistic tornado warnings. Our calculation of societal benefits accounts for their effects on fatalities, injuries and on sheltering time. We assign monetary measures to fatalities and injuries by using the value of statistical life approach and price the inconveniences of sheltering time based on the concept of opportunity costs of time.
+
+This work involves three steps. First, we conduct a household survey to learn the population's protective responses both to current deterministic tornado warnings and to prospective probabilistic ones. These responses account both for probability levels and for housing types. However, extreme weather alerts do not help if protective responses are ineffective in the sense that they have weak effects on casualty rates. So, on the second step, we evaluate the effectiveness of protective responses conditional on housing type by using the data on historic variation in weather information quality and tornado casualties. Finally, we use the current joint distribution of deterministic forecasts and tornado events to estimate the frequency of probabilistic alerts for each probability level. This last step is important, because it allows us to change the forecasting format while keeping the quality of forecasting technology constant.
+
+We calculate that probabilistic tornado warnings should create net annual benefits between \$78 to \$138 million depending on the calculation method used. The lower estimate assumes that the population has identical opportunity costs of time, while the larger estimate assumes that these costs vary across individuals. Varying opportunity costs imply that individuals shelter if and only if their costs of sheltering are below their perceived costs of life or injury. The benefit of probabilistic warnings is calculated relative to deterministic ones, which on their own already create \$96-140 million per year of net societal value.  This estimate already accounts for imperfect awareness and compliance with warnings and for imperfect protection technology.
+
+Most respondents demonstrate good understanding of probabilistic warnings and good calibration of responses to threat levels. Reported protective responses tend to increase with tornado probabilities. More interestingly, opportunity costs of time implied by their protective responses are consistent with previous estimates of opportunity costs of time in the literature. It supports the idea that potential users correctly deduce their personal risk levels from probabilistic warnings. 
+
+In response to probabilistic alerts, more people report being willing to monitor the threat as compared to deterministic warnings, but expect to shelter when the danger becomes imminent.  It leads to more people reacting to probabilistic warnings and eventually more people taking shelter. Hence probabilistic warnings reduce total casualties, while increasing the total time spent sheltering or monitoring the weather. This increase does not necessarily converts to higher societal costs. If we account for optimal response to predicted tornado probabilities and deduce opportunity costs from reported protective responses, then the societal value or opportunity cost of sheltering/monitoring time goes down due to more graduated reaction to probabilistic warnings. Probabilistic warnings deliver this positive effect by enabling users with higher opportunity costs to shelter only if tornado threats are sufficiently high. 
+
+We contribute to the literature by directly measuring net benefits of both deterministic and probabilistic tornado warnings for the population. \cite{howard_firm_2021} estimate the value of probabilistic warnings for businesses in the Dallas metropolitan area and find that probabilistic warnings would save additional \$1.3-5.6 billion per year as compared to deterministic warnings. Their calculation does not cover the general population (households) which has very different capabilities to understand and respond to warnings. We also significantly improve on their method by using the distribution of probabilistic forecasts which is more consistent with existing forecasters' skills.  \citet{simmons_economic_2013} calculate societal costs of tornados for the general population, but do not study the value of probabilistic warnings. They estimate that the contemporary costs are roughly \$6 billion lower than the hypothetical costs with tornado lethality at the 1925 US level when warnings were non-existent. However, this costs reduction cannot be completely attributed to the effect of deterministic tornado warnings due to other safety improvements happening during this period. This paper takes a more conservative approach to estimate the benefits of both deterministic and probabilistic warnings by accounting for imperfect compliance with warnings and by calculating their effectiveness directly from the variation in casualties between warned and non-warned populations. 
+
+In contrast to our approach, multiple other studies evaluate weather information \citep{lazo_economic_2002, lazo_300_2009, lazo_valuing_2011, wehde_public_2021-1} with the contingent valuation method in which potential users directly report their willingness-to-pay for the service. The only published valuation study of probabilistic tornado warnings for the population \citet{wehde_public_2021-1} falls into this category. It finds that the US population is willing to pay on average \$7.5 per person for an app providing probabilistic graphical tornado alerts. This price translates to one-time aggregate benefit between \$900 million to \$1.56 billion depending on aggregation assumptions used. While contingent valuation studies can potentially reflect additional benefits of information such as peace of mind or increased safety of others, they suffer from the hypothetical bias emerging due to respondents deliberately overstating their willingness-to-pay \citep{blumenschein_eliciting_2008, johnston_contemporary_2017}.  As a result, contingent valuation studies often provide excessively high and varying estimates of economic benefits. Hence our direct approach gives an important and more reliable lower bound of the new system's value. 
+
+Our study supports the conclusion that the US population can interpret and use probabilistic warnings. Multiple previous studies \citep{ash_tornado_2014, lindell_perceptions_2016, miran_user_2017-1} test perception and hypothetical responses to graphical representation of probabilistic severe weather alerts. In general, they find that people increase protection in response to increasing threat probabilities, even though presentation formats have strong influence both on average response levels and on sensitivity of response to presented probabilities. Additionally, \cite{leclerc_cry_2015} find that probabilistic information improves decision-making and reduces the "cry-wolf" effect, while \citet{krocak_exploring_2022} find that probabilistic information allows for better decision-making compared to categorical verbal descriptions of uncertainty. We do not only find that protective responses are sensitive to projected probabilities, but also that response levels are well-calibrated to threat levels and consistent with choices made in other domains (such as speeding \citep{wolff_value_2014}).
+
+
+
+\vspace{20pt}
+
+\section{Survey Design and Implementation}
+
+\vspace{10pt}
+\subsection{Data Collection} 
+We collect the data from two samples. The mail survey recruited respondents across the whole US but with the emphasis on tornado-prone regions (see Table \ref{torn_prone} in the Appendix). Respondents could choose to respond by mail by using an enclosed envelope or to fill the survey online. The Internet-survey recruited subjects from the tornado-prone regions only. The use of different sampling methods allowed us to get a wider representation of different demographic groups. Mail survey reached more older respondents living in rural communities, while the Internet-survey helped to get answers from younger respondents. We received 718 responses from the mail survey and 403 responses from the Internet survey. Questionnaires were practically identical  except for small changes needed to screen respondents in the Internet survey. 
+\input{../Tables/taab_mail_p.tex}
+The mail survey uses stratified probabilistic sampling to get a more representative sample which allows us to use statistical tests. Our initial frame comes from the USPS delivery route database. We stratify the sampling frame by state of residence and by housing type and sample 10600 addresses with more addresses from tornado-prone states. We consider the state to be tornado-prone if it belongs to 20 states with the highest average incidence of significant tornadoes (EF2 and above) per square mile within the last 20 years.  The selected states include 45\% of the US population, but 88\% of tornado fatalities. This paper uses only the sample obtained from the tornado-prone states.\footnote{While we have responses from other states, their reported protection plans might have poorer correlation with future behavior as many of these respondents have never considered responding to a tornado emergency (based on their open response comments). In our calculation of societal costs and benefits we consider only the population in tornado-prone states and hence the benefits for the whole US population are likely to be (slightly) larger.}
+
+The questionnaire was pretested, first, by using qualitative personal  interviews conducted either in person or over Google Meets and Skype. These interviews helped us to clarify the question's wording and make sure that their interpretation by subjects matches our expectations. On the second stage, we conducted quantitative pilots both for the Internet-sample and for the mail survey.
+
+We pretest our surveys by using, first, qualitative face-to-face\footnote{Due to COVID-19 pandemic, we conducted most of the qualitative interviews online either through Zoom, Skype or Google Meets.} interviews and, second, through quantitative pilot studies. The qualitative interviews help to clarify the understanding of questions and refine the lists of response options. The interview followed think-aloud protocols \citep{dillman_internet_2008} in which respondents  read all the questions aloud and vocalize their thinking process. Quantitative pilot studies followed the same procedure we intended to use for the main study but with smaller samples. We conducted two pilot studies for the Internet-survey and two pilot studies for the mail survey. Our pilots helped to adjust our sampling strategies and redesign a few questions which turned to be ambiguous to the subjects.
+
+\vspace{10pt}
+\subsection{Representativeness and Selection Bias} 
+Despite our effort to use different recruiting efforts, both samples had disproportionately more females and more people with college education and above (see Table \ref{descr_mail} above and Table \ref{descr_q} for the Internet-sample in the Appendix A). Additionally, the mail survey recruited more older white respondents. Hence in order to translate our findings to the US population we re-weight our results to match the US population structure by age and gender.\footnote{We use the datafrom the American Community Survey 2018, downloaded from IPUMS (\citet{ruggles_ipums_2021}).}
+
+
+
+\vspace{20pt}
+\section{Use of Standard and Extended Tornado Alerts}
+
+First, we study how extended tornado warnings would affect protective responses. We ask our respondents to imagine being at home with their family at 7 PM when a tornado warning is issued. Next, we elicit their protective responses conditional on lead times and on probabilities of a tornado to happen within a given time interval. The Internet-survey asks the same set of questions for the nightime warnings (2 AM).\footnote{Mail survey conducted after the Internet-survey had to drop these questions in effort to shorten the questionnaire.} It should be noted that individuals can face tornado threats at other times and locations beyond their homes, due to limitations on the number of questions we can include in the study, we focus only on these two scenarios, which we consider to be the most representative. 
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=33pc]{../Graphs/comp_responses_w.pdf} 
+\caption{Protective Response by Lead Time}\label{comp_responses}
+\end{figure}
+Most respondents choose to respond to a standard tornado warning by taking shelter at home or near. The proportion of respondents choosing this action (55\%) is surprisingly stable across samples and across times in the same sample (Figure \ref{comp_responses}). About 10\% of respondents in the Internet sample choose to drive to another house or structure or to drive out of the potential tornado path. This proportion is slightly higher for the Internet sample (Figure \ref{contr_plot} in Appendix).
+
+Roughly one-third of responds expects to seek more information without taking shelter. Here and in the calculation of effectiveness of probabilistic warnings, we consider seeking more information as one of the protective actions, because previous studies show that most people take shelter when they know that the danger is imminent. \citet{hammer_response_2002} and \citet{klockow_investigation_2011} show that most people in a tornado strike zone take shelter, but fewer people do it in a tornado warning zone \citep*{liu_assessment_1996, sherman-morris_tornado_2010}. As tornado strike zones or paths are much smaller compared to typical warning areas, residents often prefer to collect information before taking protective actions. For example, \citet{hammer_response_2002} surveyed residents in the Oklahoma city tornado strike zone and found that 55\% received tornado warnings from more than one source, and almost 90\% of residents eventually either evacuated or took shelter in interior rooms during the tornado. The household survey in the area of the 2011 Alabama tornado outbreak (Klockow, 2011) also found that most people monitored media and many looked at the sky but started sheltering only when a tornado was 1-2 minutes away from them.
+
+Increasing lead time to 40 minutes on its own has practically no effect on the total proportion of people taking any protective action (which includes seeking more information without taking shelter), as more than 90\% of individuals do it anyway. However, increasing lead time decreases the likelihood of sheltering at home in favor of seeking more information and evacuating. It is very plausible that extended lead time improves safety of people in vulnerable housing conditions, such as mobile houses, when evacuation is practically the only effective protection option \citep{schmidlin_tornado_2009}. But the safety of people living in more robust homes depends on their ability to interpret additional information they receive while not sheltering and properly responding to it.
+
+Providing probabilistic information is the most crucial aspect of prospective tornado alerts system, but their usefulness relies on the users' ability to understand and react to probabilistic forecasts. The survey indicates that most individuals respond rationally to probabilistic warnings. The proportion of respondents choosing to protect increases with the forecasted probability. Almost 100\% of respondents expect to take some protective action if they learn that a tornado would happen with probability 100\% in the next 40 minutes in a 10 mile radius from their location. Less than 5\% of respondents make non-monotonic choices meaning that 95\% of respondents protect for all the probabilities which are higher than their threshold probability.
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=27pc]{../Graphs/threat_resp_mail_w.pdf} 
+\caption{Protective Response by Probability of a Tornado}\label{threat_resp_mail}
+\end{figure}
+
+Most individuals expect to take protective actions when the probability gets to 20\%.  In the Internet survey, 59\% of individuals respond when the probability of a tornado within a 10-mile radius  circle is just 10\%. In the mail sample, 60\% of respondents protect when the probability is 20\% (it was the lowest probability in the mail sample). For comparison, our calculations show that the comparable implied probability for the deterministic warning is roughly 35\%,\footnote{We calculate this number by taking the probability of a tornado conditional on deterministic warning which is roughly$1-FAR=0.3$ \citep{simmons_economic_2013} and correcting it upwards to reflect a larger area of a 10-mile radius circle (314.2 sq. miles) as compared to the average area of a tornado warning (272 sq. miles).}   so the majority of the population expect to protect for much lower probabilities than the tornado probability of the deterministic warning. The range between 0 and 20\% probability is also the range of highest sensitivity to risk in which the largest share of respondents switches from no protection to protection as can be seen from the slope of the line in Figure \ref{threat_resp_mail}.  The reaction threshold is higher for nighttime warnings (see Figure \ref{threat_respQ} in Appendix B). This is consistent with higher costs of nighttime protective actions for most respondents as they potentially require interrupting sleep and driving with poor visibility.
+
+
+
+
+\vspace{20pt}
+\section{Computation of Direct Societal Benefits}
+\vspace{10pt}
+\subsection{Overview of the Approach} 
+
+We estimate direct economic benefits of extended tornado warnings as the difference in direct societal costs between standard and extended warnings. Direct societal costs in our calculation include the cost of tornado deaths and injuries and the cost of time spent sheltering (Sheltering Costs). The calculation uses the surveys to calculate the proportions of population taking protective actions for each level of the probabilistic forecast. Our approach is similar to the approach used by \citet{simmons_economic_2013}. We convert each of the cost components to the monetary scale. Value of statistical life and value of statistical injury metrics translate predicted numbers of deaths and injuries into equally undesirable monetary costs. We use the Value of Time to price the time spent sheltering under both standard and extended tornado alerts. Direct costs of tornadoes is:
+$$\mbox{Direct Costs }=\mbox{ VSL Lost }+\mbox{ Value of Injuries }+\mbox{ Sheltering Costs}$$
+Value of statistical life (VSL) assigns a monetary value to life based on observed trade-offs between money and small chances of death. Based on literature review for wage differentials for risky occupations, \citet{viscusi_value_2003} suggest the range from \$7 million to \$12.4 million per statistical life. We use VSL of \$11.13 million which is equal to the value recommended by \citet{kniesner_value_2019} and adjusted for inflation from 2019 to 2020. For comparison, \citet{simmons_economic_2013} use the value of \$7.6 million per statistical life in prices of 2007, which corresponds to \$9.5 million in 2020 prices.  The US Environmental Protection Agency recently used the value of \$10.9 million in its Emission Guidelines for Greenhouse Gas Emissions from Existing Electric Utility Generating Units (2018)\footnote{https://www.epa.gov/stationary-sources-air-pollution/electric-utility-generating-units-emission-guidelines-greenhouse}, which also translates to \$11.2 million in 2020 prices.
+
+We  assign monetary value to injuries in a similar fashion. Most tornado injuries are minor, and so following the approach in \citep*{simmons_direct_2006, simmons_economic_2013}, the monetary value of injury is 1/100 of the value of statistical life which is \$111,300 per injury.
+
+The following formula calculates expected injuries and fatalities\footnote{To save on notation, we use the same variable names to denote both expected injuries and expected fatalities. The formulas are identical.} under deterministic warnings as the product of the affected population ($P_A$), baseline injury/fatality rate ($r$) in the affected population and the mitigation factor due to protective responses ($M$):
+$$F_D=P_A \times r \times M$$
+Affected Population ($P_A$) is the expected annual population in tornado strike zones. It is equal to the product of the average annual number of tornado warnings $N_w$, average tornado strike area $A$ and population density $d$ corrected for the false alarm rate (FAR) and probability of detection (POD):\footnote{The formula is derived in the following way. By definition, POD is equal to the proportion of positive events for which the warning is issued: $POD=\mbox{Warned tornadoes}/\mbox{Total tornadoes}$. The number of warned tornadoes is equal to the number of warnings multiplied by the proportion of true warnings: $\mbox{Warned tornadoes}=N_w \times (1-FAR)$. Hence $\mbox{Total tornadoes} = \mbox{Warned tornadoes}/POD=N_w \times (1-FAR)/POD$. Then we calculate the area affected as the product of the $\mbox{Total tornadoes}$ multiplied by the average tornado strike area: $\mbox{Area affected} =A\times \mbox{Total tornadoes} = A \times N_w \times (1-FAR)/POD$. Finally, we multiply the total area affected by average population density $d$ to get the final formula above. The last step assumes that the tornado strike area is independent of the population density.}
+$$P_A= N_w \times A \times d \times (1-FAR)/POD$$
+The US issues $N_w=2063$ warnings per year on average (\citet{howard_firm_2021}). The population density in 20 states with the highest frequency of significant tornadoes is $d=119$ people per square mile. \citet{simmons_economic_2013} estimate that the average tornado strike area $A$ is approximately 0.3 square miles. We also use their reported estimates of $POD=0.7$ and $FAR=0.7$.\footnote{\citet{brooks_long-term_2018} find that with storm-based warnings POD went from 0.7 in 2011 to 0.5 in 2016. Using POD of 0.5 in our calculation slightly increases our projected benefits of both probabilistic and deterministic warnings. However, as this POD decrease does not reflect a growing frequency of tornados or worsening forecasters' skills \citep{brooks_long-term_2018}, we choose to keep the same POD of 0.7 both in calculations based on historical data and for future projections.} Based on this calculation, Affected Population $P_A$ includes 31.8 thousand people per year. 
+
+The baseline fatality (injury) rate per person in a strike area $r$ is the probability that a person in a tornado strike zone is killed (injured) in a tornado if they do not protect. The protective mitigation factor $M$ measures the proportional decrease in risk of injury/death from the expected protective response. It depends both on the expected behavior and on the effectiveness of this behavior in reducing the risk. These two variables strongly depend on housing conditions, so we condition our calculation on living in permanent vs. mobile houses and weight by corresponding population proportions. We explain the calculation of the baseline fatality and injury rates and the protective response mitigation factors in the next subsection.
+
+We use a similar approach to forecast casualties under probabilistic forecasts, but now we account for different responses for each tornado probability.  The total population affected by tornados $P_A$ does not change between different forecasting approaches because the underlying meteorology does not change. But there are changes in the distribution of forecasts received by the population and hence in their protective actions. We consider probabilistic forecasts with a finite potential number of possible forecasts $i=1,2,..n$. Each forecast $i$ is associated with a forecasted probability, denoted by $p_i$, indicating the likelihood of a tornado occurrence (e.g., $p_i=0.2$ means a 20\% chance of occurrence), and with its frequency $f_i$ . We calculate the expected number of casualties $C(p_i)$ for each predicted probability $p_i$ as the the population affected by tornadoes $P_A$ multiplied by the proportion of tornadoes happening within that probabilistic forecast ${f_ip_i\over \sum_k f_k p_k}$ and then multiplied also by the baseline risk $r$ and the probability-specific mitigation factor $M(p_i)$:\footnote{One can obtain this equation by noting, first, that if there are $F$ forecasts in total then there are $F_i=f_i F$ forecasts predicting probability $p_i$. If the forecasted probability matches the true probability of a tornado conditional on forecast, then there are $X_i=p_i F_i=p_i f_i F$ people affected by tornadoes within that predicted probability bin. As the total number of people affected by tornadoes remains constant at $P_A$, we know that $\sum_kX_k=\sum_kp_kf_kF=P_A$. Hence $F={1\over \sum_k p_kf_k}P_A$ and consecutively $X_i={p_if_i\over \sum_k p_kf_k}P_A$. From here we immediately obtain the formula for the predicted casualties as the product of the affected population $X_i$ corrected for effectiveness of the protective response.}
+
+\begin{equation}
+C(p_i) = P_A \times \left({f_i p_i\over \sum_k f_k p_k}\right)  \times r \times M(p_i)
+\end{equation}
+
+The total expected number of casualties $C_P$ for the probabilistic forecast is the sum of casualties $C(p_i)$ for each predicted probability $p_i$ among the possible forecasts:
+\begin{equation}
+C_P=\sum_{i=1}^n C(p_i)=\sum_i \left({f_i p_i\over \sum_k f_k p_k}\right) P_A \times r  \times M(p_i)
+\end{equation}
+
+Note that in the expression above the denominator $\sum_k f_k p_k$ is just a total probability of a tornado conditional on having a forecast. We use the survey's proportion of people taking protective actions for each probability to calculate the probability-specific mitigation factor.\footnote{We use only a larger mail sample for calculating protective responses, because responses in the Internet-sample seem to involve more social desirability bias with more excessive protection. This is evident in a sizable proportion of population reporting protective actions when the probability of a tornado is zero (see Figure \ref{threat_respQ} in Appendix). } As before, for the protective response, we assume that people who report needing to collect more information will eventually shelter before a tornado. 
+
+\vspace{10pt}
+\subsection{Protective Response Effectiveness} 
+Protective response mitigation factor $M$ measures the proportional effect of protective actions on tornado fatalities and injuries. Because we are not aware of any generalized estimates of protective response effectiveness in the literature, we estimate it indirectly from casualty effects of tornado warnings and other historical data. This estimation assumes that households protect only in response to warned tornadoes, and that the protection response is not universal. We also assume that the protective response has the same proportional effect on reducing both fatalities and injuries.
+
+\citet{simmons_false_2009} find that the warned tornadoes on average have 30-40\% less injuries controlling for tornado strength, strike area, geography, and time. Similarly, \citet{simmons_wsr-88d_2005} find that when a Weather Forecast Office (WFO) in the US installs a WSR-88 weather radar, tornado injuries in covered counties go down by approximately 40\%. Based on this evidence, we make a relatively conservative assumption that warnings reduce injuries by 35\%. While the paper does not observe the effect of warnings on fatalities, this is likely the result of a much smaller number of fatalities in the sample. Consistent with these observations, we also assume that warnings reduce fatalities by 35\%.
+
+The following more technical calculation then infers protective response effectiveness. The calculation accounts for housing type $t$ (permanent, mobile) to reflect much higher vulnerability of people living in mobile homes. The effect of protective response depends both on the probability of a response and on its effectiveness in reducing casualties. Let $r_t^0$ denote the baseline probability of death for an unprotected person in home of type $t$ in a tornado strike zone and $r_t^w$ is the probability of death for a protected person. Additionally,  $R_t$ is the probability of protective response to a warning and $m_t$ is the \textit{mitigation effectiveness} (for example, an action with $m=0.6$ reduces fatalities by 40\% relative to the baseline).\footnote{Note that in contrast to the mitigation factor $M$ which combines propensity of protective actions with their effectiveness, $m_t$ measures only the effectiveness of the protective action conditional on acting.} Then the fatality rates are described by the following expressions for each type of housing $t$ with $P_t$ denoting the corresponding population share:
+\begin{equation}
+r^w_t=r^0_t(R_tm_t+(1-R_t))\equiv r^0_t M_t,t=mobile,permanent 
+\end{equation}
+Here $(R_tm_t+(1-R_t))$ is the average decrease in casualties due to protective responses which includes both the population which protects $R_t$ and the rest of the population which doesn't change their behavior $(1-R_t)$. As we assumed before based on existed literature, warnings reduce both fatalities by 35\%:
+\begin{equation}
+\sum_t P_t (r^0_t-r^w_t)=0.35 \sum_t P_t r^0_t,t=mobile,permanent 
+\end{equation}
+Finally, the average fatality rate $r_t^av$ is the weighted average for warned and unwarned fatality rates accounting for the probability of detection (POD):
+\begin{equation}
+r_t^av=PODr_t^w+(1-POD)r_t^0,t=mobile,permanent     
+\end{equation}
+Next, we solve the system of equations above to find both baseline hazard rates $r_t$ and mitigation effectiveness parameters $m_t$. As a first step of this calculation, we consider the population living in mobile homes. \citet{simmons_economic_2013} estimate the average probability of death of mobile home resident $r_{mob}^{av}$ to be 0.8472\% if located in a tornado strike zone. The best and practically the only protection response for a mobile house resident is to evacuate to a sturdier building, shelter or travel out of the tornado path \citep{schmidlin_tornado_2009}. We assume for simplicity that evacuation eliminates the tornado risk for this group ($m_{mob}=0$). However, \citet{schmidlin_tornado_2009} find that only around 30\% of mobile house residents currently evacuate if they receive a tornado warning. Using equations (3) and (5), we obtain that the baseline rate of fatalities for mobile house residents is 110\% of the average or 1.01\% and the warned rate is 0.751\%.
+
+Next, we estimate the baseline risk and the mitigation effectiveness for residents of permanent homes. We do it by substituting the risks of mobile home residents into the equation (4) and solving the resulting system of (1-3) for $r_{perm}^0$ and $r_{perm}^w$. The estimate for the average risk of fatalities in permanent homes comes again from \citet{simmons_economic_2013}, who calculate that 0.0882\% of residents in permanent homes die in the average tornado strike zone. We calculate that the baseline risk of death for residents of permanent homes $r_{perm}^0$ is 0.126\% and the risk for warned residents of permanent homes $r_{perm}^w$ is 0.0743\%. Thus, warnings reduce fatalities in permanent homes by roughly 40\%. 
+
+To calculate the mitigation effectiveness factor $m_{perm}$ for residents of permanent homes, we need to account for imperfect compliance with issued warnings. Previous studies indicate that while the response rate to warnings $R_{perm}$ is close to around 30\% for warned counties (Liu et al, 1996; Schmidlin et al, 2009), the response rate reaches 70-90\% for population directly in a tornado path and for stronger tornadoes \citep*{klockow_investigation_2011, paul_predictors_2015}. As only the response of individuals in a path matters for casualties, we assume that 60\% of permanent homes residents in a tornado path take some protective action ($R_{perm}=0.6$). It follows that taking protective actions mitigates the baseline risk for permanent homes by approximately 65\% ($m_{perm}=0.361$). 
+
+Event studies support our finding of high mitigation effectiveness for permanent homes. For example, \citet{niederkrotenthaler_injuries_2013} finds that sheltering in a basement reduced injuries by roughly 80\% during April 2011 Alabama tornadoes, while \citet{daley_risk_2005} find no severe injuries and deaths among people doing it during the Oklahoma-city 1999 tornado. The same applies for the 2011 Joplyn tornado \citep*{paul_predictors_2015}. The evidence for using interior rooms as a shelter is more mixed. \citet{niederkrotenthaler_injuries_2013} find that sheltering in an interior room had reduced the risk of injury by about 60\%, but \citet{daley_risk_2005} find just 20-30\% reduction in severe injuries and \citet{hammer_response_2002} find no effect of using an interior room vs any other room in a permanent house.
+
+We apply the same approach to the calculation of injury risks. The calculation assumes the average risk of injury at 0.025 for mobile homes in the strike area and the risk of 0.0224 for permanent homes in the strike area (based on Simmons and Sutter, 2013 calculation). The baseline risk of injury for permanent homes equals 0.0306 and the baseline risk for mobile homes equals 0.0316. While the predicted injury risk is very similar for both home types, it seems that permanent homes give better protection against death, but not much more protection against non-fatal injuries.\footnote{The absence of differences in injury rates between permanent and mobile homes seems counter-intuitive and can be a result of measurement issues. Other studies use surveys conducted in a tornado strike zones and often find higher injury rates for mobile home residents, but with a lot of variation due to small sample sizes. For example, \citet{glass_injuries_1980} find much higher injury rate among mobile home residents but based on just 14 households with mobile homes. \citet{daley_risk_2005} find a higher incidence of severe injuries among mobile home residents compared to permanent homes, but lower incidence of minor injuries.}  
+
+
+\vspace{10pt}
+\subsection{Distribution of Probabilistic Forecasts} 
+Population's protective responses depend on perceived probabilities. Hence we need to know how often each probability is forecasted in order to estimate the costs of probabilistic warnings. This task is non-trivial, because for any probability of a tornado, one can issue different unbiased probabilistic forecasts. For example, one completely unbiased but also completely useless forecast is the forecast which is always equal to the baseline (environmental) probability of a tornado to happen. On the opposite end of the precision spectrum, forecasters can predict a probability of 1 if a tornado is going to happen and zero otherwise. In practice, dynamic properties of weather systems and imperfect information impose constraints on the maximum precision of tornado forecasts.
+
+We are going to use signal detection theory to infer the distribution of probabilistic forecasts from the joint distribution of tornado warnings and tornado events.\footnote{\citet{howard_firm_2021} use a simpler approach by assuming equal forecasting frequency for each probability. However, this approach can easily over-estimate the precision of probabilistic forecasts and their value, because it implies a mugh higher average confidence of forecaster than allowed by the existing technology.} The signal detection approach assumes that probabilistic forecasts use the same information as existing standard warnings. If it is indeed true, all the information can be aggregated to one signal equal to the posterior probability of a tornado to happen. In the simplest case which we use here, this signal has a normal distribution with dispersion 1\footnote{One can always rescale the signal without the loss of generality to get the dispersion to equal one.} and a mean depending on actual state of the world. If the state of the world is indeed the state in which a tornado forms, the signal has a higher mean. The difference between signal means in tornadic and non-tornadic state $D'$ measures the forecaster's ability to discriminate between two states of the world.
+
+\citet{brooks_tornado-warning_2004} demonstrates how to use the historic performance of tornado warnings to estimate the difference in means $D'$ between the latent signal distribution in tornado and non-tornado states. \citet{brooks_long-term_2018} use the same approach and estimate that in recent years, the performance is consistent with $1<D'<1.4$ if the baseline probability of a tornado conditional on a storm is 10\%.\footnote{This probability corresponds to the average forecasted probability of a tornado weighted by forecast frequency $\sum_k f_k p_k$ we introduce previous in equations (1)-(2).} We use $D'=1.35$ on the upper end of this range to reflect improvements in warnings performance in early 2000's and potential improvements due to better satellite data and dual polarization radars in more recent years. 
+
+The projected distribution of probabilistic forecasts then comes from Monte-Carlo analysis. We draw $N=100,000$ binary events $\omega$ from the set $\{0,1\}$ in which 1 is a tornado state emerging with probability $p_0=0.1$ and then draw $N$ random signals from the corresponding normal distributions ($N(0,1),N(D',1)$). Then we calculate the posterior probability $f$ by using the Bayes formula:
+\begin{equation}
+ f={p_0\phi(S;D')\over (p_0\phi(S;D')+(1-p_0)\phi(S;0))}
+ \end{equation}
+Here  $\phi(S;x)$ is a normal distribution density with mean $x$ and $\sigma=1$ which is calculated when the signal equals $S$ .The formula would never produce certain forecasts, but it can get very close to certain forecasts if the signal's value $S$ is very high.
+ 
+\begin{figure}[!htbp]
+\centering
+\begin{subfigure}{0.45\linewidth}
+\includegraphics[width=17pc]{../Graphs/cdf_forecast0.png}
+\end{subfigure}
+~
+\begin{subfigure}{0.45\linewidth}
+\includegraphics[width=16pc]{../Graphs/pdf_forecast0.png}
+\end{subfigure}\caption{Projected Distribution of Probabilistic Tornado Forecasts}\label{prob_forecast}
+\end{figure}
+
+The resulting distribution of forecast probabilities (\ref{prob_forecast}) is concentrated around low-probability events, which follows from both low baseline probability of a tornado and our relatively modest ability to forecast tornados.\footnote{It is arguably much harder to forecast a tornado 10 minutes in advance than to forecast rain one hour in advance.} Only 2.5\% of forecasts predict probabilities above 50\%. However, 30\% of forecasts predict that chances are above the baseline 10\% and 14.5\% predict that chances of a tornado are above 20\%.
+
+
+\vspace{10pt}
+\subsection{Sheltering Costs}
+Opportunity costs of sheltering reflect the disutility of sheltering instead of continuing normal activities. It is equal to the product of value of time per total annual number of hours  spent sheltering in each scenario. Obviously, value of time depends on activities interrupted and their utility versus the utility of sheltering which can drastically differ both by individual and by time of the day. For example, a person sleeping in their basement do not have to interrupt this activity for sheltering and hence has exactly zero value of time for sheltering. In contrast, a person working at home in an unsafe location might need to stop working which either reduces their earnings roughly by wage rate per hour or reduces their remaining leisure time.  
+
+We calculate the sheltering costs in two ways. First, we use the opportunity costs of time reported in previous studies and in different contexts. Second, we use the protective responses from the survey infer the distribution of opportunity costs of sheltering across the population. In both approaches, the total number of hours spent sheltering equals the number of people warned during a typical year $P_w$ multiplied by the average duration of warnings. We use the following formula to calculate the expected annual population warned $P_w$ for deterministic warnings:\footnote{We count one person multiple times if he/she receives multiple warnings during the year.}
+$$P_w= N_w \times A_w \times d $$
+We again follow \citet{howard_firm_2021} in using the average warning area $A_w=275$ sq. miles and the average number of $N_w=2063$ warnings per year. The population warned for probabilistic warnings is adjusted proportional to the ratio of current probability of event in deterministic forecasts to their average probability of event properly adjusted for area. Our survey describes a positive event as a tornado within 10 miles of the house or closer which corresponds to a slightly larger area (314 sq. miles) than the average area of deterministic impact-based warning, so the adjustment increases the population warned in probabilistic forecasts by a factor of 1.14=314/275 even before adjusting for probabilities.
+
+The first approach assumes that the opportunity cost of time is uniform across the population and sets this parameter based on previous literature. However, we cannot use same exact numbers because the costs change with inflation, wages and sample structure. Instead, we rely on studies calculating opportunity costs as the proportion of wage rate and then translate older results for the contemporary state of the economy. As paid work is one of the main activities conducted by working adults, the wage rate provides a natural benchmark for the value of time in this approach. Multiple studies, however, find that even for working adults the value of time is significantly lower than their wage rate. For example, \citet{larson_revealing_2004} find that the value of time varies from 0.5 for adults with fixed week to 0.8 for adults with flexible workweek. \citet{wolff_value_2014} put the value of time as 50\% of the wage rate based on the analysis of speeding tickets and gasoline consumption. Consistent with this literature, but corrected for the large proportion of individuals out of labor force in our sample, we use 1/3 of the average wage rate to value the sheltering time. The average civilian non-farm wage was equal to \$29.35 in 2020. It translates to the opportunity cost of sheltering time of \$9.8 per hour.
+
+Most value for probabilistic warnings comes from heterogeneity of their users in terms of costs of sheltering versus safety concerns. Probabilistic warnings allow rational sheltering decisions based on individual cost-benefit analysis with respect to predicted probabilities. For example, a person in a well-protected house might decide against sheltering if the probability is 20\%, but will shelter when the probability increases to 60\%. 
+
+Our second calculation of direct costs of tornado warnings accounts for heterogeneous opportunity costs of sheltering. We infer heterogeneous opportunity costs from protective responses reported in the survey similarly to the approach used for firms in \citet{howard_firm_2021}. Subjects report their protective response for each probability of a tornado $p$ which allows us to infer their opportunity costs in the following way. First, for each probability level $p$, not sheltering imposes a certain increase in fatality risk $c(p)$ which we value similarly by using the value of statistical life approach. We calculate the cost of fatality risk $c(p)$ as the product of tornado probability $p$, baseline fatality risk $r$, the effectiveness of mitigation measures $(1-m)$, and the value of statistical life $VSL$:
+$$c(p)=p \cdot r \cdot (1-m) \cdot VSL$$
+Next, we assume that individuals switching from not sheltering to sheltering at probability $p$ do so because their fatality costs of not sheltering $c(p)$ start to exceed the opportunity costs of sheltering $c_o$. In other words, we assume that individuals behave consistently with cost-benefit analysis and successfully evaluate their fatality risks.  If an individual does not shelter in response to the forecast with the probability $p_1$ and associated costs $c(p_1)$, but does so when the probability increases to the level $p_2>p_1$, then the individual's latent opportunity costs of time $c_o$ should be in between these two costs:  $c(p_1)\leq c_o\leq c(p_2)$. This gives a range of plausible opportunity costs for each group of subjects with identical probabilistic thresholds. The upper estimate comes from the assumption that individuals switching when probability increases from $p_1$ to $p_2$ have opportunity costs based on higher probability $p_2$. The lower bound estimate uses the lower probability $p_1$ to calculate sheltering costs and does so for each probability range.  The true value of sheltering costs for each group has to lie somewhere in between higher and lower bounds. Using the largest value of the range of plausible opportunity costs produces more conservative estimates of tornado warnings' value. It also eliminates the need of inferring zero opportunity costs for subjects protecting for the lowest possible probability of 20\%. However, we also show calculation of opportunity costs  under the lower bound approach. We assign the probability $0.0463$ as the risk for the lowest group which corresponds to the average tornado probability conditional on having a storm and on the probabilistic forecast being below 20\%.
+
+\input{../Tables/opp_costs.tex}
+
+The calculated sheltering costs (see Table \ref{opp_costs}) are comparable to the uniform sheltering costs which we took at 1/3 of the median wage rate or \$9.8 per hour. Note that the calculation of heterogeneous sheltering costs uses only reported decision and not wage rates. It demonstrates that most individuals neither overreact nor underreact to predicted tornado risks with protection decisions being highly consistent with other domains used to estimate the Value of Statistical Life. The lowest opportunity cost of sheltering for permanent home residents is just \$3.35 per hour if using the upper bound approach and \$0.8 if using the lower bound approach. The second group of permanent homes residents which switches to protection when the risk goes from 20\% to 40\% has sheltering costs between \$3.35-6.71 range. The average sheltering costs is between \$3.2 to \$5.9 for permanent home residents and between \$126 to \$144 for mobile home residents.\footnote{Some individuals do not expect to shelter for any projected risk. The calculation of average sheltering costs when assumes that their opportunity costs correspond to 100\% probability of a tornado. As this group never protects, their presence has no effect on total sheltering costs for any type of warning.} Higher sheltering costs for mobile home residents reflect both limited protection options and their higher effectiveness: the only realistic protection plan involves moving to a closest sturdy shelter or out of the tornado path. 
+
+We assume that everyone taking a shelter or evacuating stops their normal activities exactly for the duration of tornado warning. The average warning duration has been decreasing since early 2000’s. For this reason, we use the latest number available from \citet{brooks_long-term_2018}. The latest year they cover is 2015 with the corresponding average duration of 37.5 minutes. We also assume that people choosing to collect more information without sheltering do not bear any time costs. Checking information sources most frequently mentioned in the survey (cell phone apps, Internet) requires relatively little time or can be done without interrupting normal activities. While we assume that these individuals would eventually shelter if they happen to be in a strike zone, the average strike zone area is negligible relative to the average warning area.
+
+
+
+\vspace{20pt}
+\section{Results}
+
+While our calculation does not aim to provide accurate forecasts of total tornado fatalities and injuries in the US, it is important to match the scale of potential casualties to receive an unbiased estimate of total cost savings and we do it reasonably well.  Our predicted tornado casualties with deterministic warnings (around 50 fatalities per year) are similar to historic rates. For comparison, on average tornadoes were killing 78 people in the US per year in 1980 - 2019, and this number included people killed outside of their residencies.  
+
+The calculation presented at Table \ref{dirbenefits} indicates that deterministic warnings save roughly 19 lives per year, not accounting for victims outside and in places of work. We expect that probabilistic warnings would on average save an additional seven lives per year. This effect comes from many people starting to react to warnings when the forecast probability is still below the threshold required to issue deterministic warnings. The reduction in injuries is proportional to the reduction in fatalities as consistent with our assumptions.
+
+The decrease in fatalities and injuries translates into significant monetary gains from both standard and probabilistic warnings if we use the statistical value of life or injury to value casualties. The total casualty (fatalities+injuries) cost of tornadoes without warnings is \$871.5 million per year. Deterministic warnings reduce costs of casualties by  approximately \$250 (252.0) million. Probabilistic warnings additionally reduce costs of casualties by almost \$90(87.3) million per year.
+
+\input{../Tables/dir_benefits3.tex}
+
+Accounting for the opportunity costs of sheltering time obviously decreases the net societal value of deterministic warnings, but it is still fairly large. The net benefit of deterministic warnings is \$95.5 million per year under the assumption of uniform opportunity costs and \$139.6 million per year under the assumption of heterogeneous opportunity costs. The assumption of heterogeneity of opportunity costs matters because it implies that only users with lower opportunity costs take shelter in response to warnings if their costs are lower than the average risk implied by the deterministic warning. We find that even for the deterministic warnings the benefit of reduced casualties outweighs additional opportunity costs of sheltering. This observation is true both for uniform and heterogeneous opportunity costs. However, their net effect on societal costs is relatively modest.  In contrast, \citet{simmons_economic_2013} find that the societal costs of tornadoes calculated for the constant population and constant value of statistical life and injury go down by around \$6 billion between 1925 and 2000. Their approach is very similar to ours as they also account for value of statistical lives lost and opportunity costs of time. However, this enormous change in societal costs does not necessarily come from tornado warnings. The calculation also seems to use an inflated fatality baseline due to the most deadly and extremely strong Tri-State tornado event happening at the beginning of this period. This period also saw improvements in building quality, better healthcare and more awareness of tornado protective strategies.
+
+Probabilistic warnings further reduce societal costs of tornadoes. Most of this effect comes from reducing tornado fatalities and casualties. This safety increase has a downside as more people start sheltering, but as long as decisions to shelter respond rationally to actual opportunity costs, probabilistic warnings would also reduce the societal costs of sheltering. We estimate that probabilistic warnings would provide net benefits\footnote{Not accounting for technological costs: research and development and additional training of meteorologists.} of \$76 million per year if assuming uniform opportunity costs of time and \$139.4 million if accounting for costs heterogeneity (\$95.1 million if using a lower bound estimate of sheltering cots). The large discrepancy between value calculated for uniform and heterogeneous costs shows that large if not the largest value of probabilistic warnings comes from more nuanced sheltering decisions. When forecasters predict a very high chance of a tornado, most individuals expect to take shelter, but when the predicted chance is low, only people with easy access to shelter or no important competing activities do. 
+
+
+
+
+\vspace{30pt}
+\section{Conclusion}
+
+We evaluate the benefits of deterministic and probabilistic tornado warnings by asking potential users about their behavioral responses. Based on individual responses, we predict lives saved and hours of sheltering time and convert them into monetary terms. This work requires evaluating the effectiveness of protective responses and the effectiveness of future probabilistic forecasts.
+
+We find that both deterministic and projected probabilistic tornado warnings deliver significant positive net benefits for the US. Deterministic tornado warnings save around 20 lives per year and create around \$100-140 million of net societal benefit. Probabilistic warnings additionally increase this benefit by another \$76-140 million per year. We estimate that most probabilistic forecasts will involve low tornado probabilities. Hence the benefit of probabilistic forecasts emerges mostly because warnings issued for probabilities below deterministic threshold save additional lives. In addition, probabilistic warning also reduce sheltering of individuals with high sheltering costs when projected probabilities are low which reduces the total cost of time spent sheltering.
+
+Our calculation of societal benefits of tornado alerts does not account for other potential psychological benefits of tornado warnings. For example, the laboratory experiment conducted by \citet{eliaz_paying_2010} demonstrates that people are willing to pay for information not used in decision-making if this information helps to evaluate previously made decisions. In a similar vein, the model of \citet{golman_demand_2021} postulates that people want to get information to fill their information gaps. In addition, many people derive value from public goods only due to their use to others ("non-use value"). For these reasons, our estimate of societal benefits should be treated a lower bound, while the real value might be significantly higher. But it is important that even the calculated benefits seems large enough to justify the costs of developing and implementing probabilistic tornado warnings.
+
+This research has two significant policy implications. First, even though our estimates are on the lower and more conservative side, the projected annual benefits of \$70-140 mln are still high enough to more than justify research and development expenses needed to develop and transition to probabilistic warnings. For comparison, in 2023, NOAA expects to spend just \$20.9 mln on their Tornado Severe Storm Research / Phased Array Radar\footnote{See \url{https://www.noaa.gov/sites/default/files/2022-05/508_Compliant_Final_FY23_NOAA_Blue_Book_Budget_Summary.pdf} for the Green Book NOAA budget request for 2023.} which includes probabilistic warnings as part of the research agenda. Second, it indicates that probabilistic warnings should be issued for much lower probabilities than the currently existing thresholds for deterministic warnings. We observe that around one-half of the population starts taking some protective measures if the tornado probability is as low as 10\%. Hence the distribution of potential forecasts should issue warnings even when the probability of a tornado is estimated to be as low as 10\% and potentially 5\%. Additional information provided to households will still allow them to make better decisions and shelter only if their perceived risks outweigh the costs of sheltering.
+
+High calculated benefits of probabilistic warnings points to the need for further research work on their optimal design. While this is already an active research area, it still might benefit from more experimental studies using their actual implementations instead of hypotheticals. Using actual technologies would allow to elicit unbiased users' preferences between different systems as well as track their usage over time, geography and weather events. This amazing research becomes much easier due to proliferation of mobile devices and increasing mobile connection speeds.
+
+\newpage
+
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ACKNOWLEDGMENTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\acknowledgments
+This work was supported by NOAA/Office of Oceanic and Atmospheric Research under NOAA–Universityof Oklahoma Cooperative Agreement NA16OAR4320115, U.S.
+Department of Commerce.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DATA AVAILABILITY STATEMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+%
+\datastatement
+The anonymized survey data is and the code used to process it is available at \url{https://github.com/AlUgarov/Benefits_ProbWarnings}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% APPENDIXES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% If only one appendix, use
+
+%\appendix
+
+%% If more than one appendix, use \appendix[<letter>], e.g.,
+
+%\appendix[A] 
+
+%% Appendix title is necessary! For appendix title:
+
+%\appendixtitle{Title of Appendix}
+
+%%% Appendix section numbering (note, skip \section and begin with \subsection)
+%
+% \subsection{First primary heading}
+
+% \subsubsection{First secondary heading}
+
+% \paragraph{First tertiary heading}
+
+\clearpage
+\newpage
+\appendix[A] 
+
+\appendixtitle{Additional Tables}
+\input{Table_incidence.tex}\label{torn_prone}
+\input{../Tables/taab3_p.tex}\label{sample_tab}
+
+\clearpage
+\newpage
+\appendix[B] 
+\appendixtitle{Additional Graphs (Internet Sample)}
+
+\begin{figure}[!htbp] 
+\centering
+\includegraphics[width=33pc]{../Graphs/contr_plot_allQ.pdf}
+\caption{Protective Response by Lead Time (Internet-sample)}\label{contr_plot}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=33pc]{../Graphs/threat_resp_allQ.pdf} 
+\caption{Protective Response by Probability of a Tornado (Internet sample)}\label{threat_respQ}
+\end{figure}
+
+\clearpage
+\newpage
+\bibliographystyle{ametsocV6}
+\bibliography{references}
+
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% END OF AMSPAPERV6.1.TEX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

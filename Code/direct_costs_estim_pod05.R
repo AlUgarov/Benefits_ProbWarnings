@@ -32,7 +32,7 @@ N_warnings=2063 #from Howard et al (2020)
 FAR=0.7 #from Howard et al (2020)
 
 #Probabiity of detection:
-POD=0.7
+POD=0.5
 
 #strike_rate=0.01 #need to adjust
 strike_area=0.302 #from Simmons and Sutter (2011) based on authors' calculation for 1990-2002
@@ -80,8 +80,8 @@ R_P=0.6 #protective response, permanent
 #First, calculate for mobile homes:
 # Note r_M_av=base_rate*[(1-POD)+POD*(R*m+(1-R))], m=0 for mobile homes
 m_M=0
-r_M_b=r_M_av/((1-POD)+POD*(R_M*m_M+(1-R_M))) #baseline fatality rate for mobile homes
-r_M_w=r_M_b*(R_M*m_M+(1-R_M)) #warned fatality rate for mobile homes
+r_M_b=r_M_av/((1-POD)+POD*(R_M*m_M+(1-R_M)))
+r_M_w=r_M_b*(R_M*m_M+(1-R_M))
 print(c(r_M_b,r_M_w))
 
 #Second, calculate for permanent homes by solving two equations:
@@ -89,8 +89,8 @@ print(c(r_M_b,r_M_w))
 #(1-POD)*r_P_B+POD*r_P_w=r_P_av
 V=(pop_M/pop_P)*(r_M_w-(1-warn_effect)*r_M_b)
 #r_P_b=(r_P_av-POD*V)/(1-POD+POD*(1-warn_effect))
-r_P_b=(r_P_av+POD*V)/(1-POD*warn_effect) #baseline fatality rate for permanent homes
-r_P_w=(1-warn_effect)*r_P_b-V #warned fatality rate for permanent homes
+r_P_b=(r_P_av+POD*V)/(1-POD*warn_effect)
+r_P_w=(1-warn_effect)*r_P_b-V
 print(c(r_P_b,r_P_w))
 print(1-r_P_w/r_P_b)
 
@@ -98,17 +98,12 @@ print(1-r_P_w/r_P_b)
 m_P=1-(1/R_P)*(r_P_b-r_P_w)/r_P_b
 print(m_P)
 
-#Calculate the average warning effect again for verification (should be 0.65):
+#Calculate the average warning effect again for verification:
 print((pop_P*r_P_w+pop_M*r_M_w)/(pop_P*r_P_b+pop_M*r_M_b))
 
 
 #baseline injury rates are in the same proportion to average rate as fatality baseline to average:
 inj_rate=c((r_P_b/r_P_av)*0.0224,(r_M_b/r_M_av)*0.025)
-
-#alternative injury rate (mobile homes injury rate is in the same prop to perm home injuries as fatalities are):
-#inj_rate=c((r_P_b/r_P_av)*0.0224,(r_M_b/r_P_b)*(r_P_b/r_P_av)*0.0224)
-print(inj_rate)
-
 
 #Baseline injury and fatality rates:
 cas_rate=data.frame(housing=c("Permanent","Mobile"), inj_rate, fat_rate=c(r_P_b, r_M_b))

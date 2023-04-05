@@ -2,7 +2,7 @@
 This repository contains anonymized raw data and code needed to reproduce the paper "Lives Saved vs Time Lost: Direct Societal Benefits of Probabilistic Tornado Warnings"
 
 ## Data
-Original data is in Input/Data_Mail.csv (mail sample) and in Input/Tornado_Warnings_Qualtrics.csv.
+Original data is in Input/Data_Mail.csv (mail sample) and in Input/Tornado_Warnings_Qualtrics.csv (Internet sample).
 File PilotData.csv also contains the data for the mail pilot.
 Questionnaires used for different waves are in the folder Insruments/
 
